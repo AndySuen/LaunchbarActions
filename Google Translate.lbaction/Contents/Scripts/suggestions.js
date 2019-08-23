@@ -14,6 +14,15 @@ function translate(argument) {
         }
         if (re.test(s.slice(0, -1))) {
             var ls = s.match(re);
+            var tmp = []
+            for (let w of ls) {
+                if (tmp.length && (tmp[tmp.length - 1] + w).length <= 40) {
+                    tmp[tmp.length - 1] = tmp[tmp.length - 1] + w
+                } else {
+                    tmp.push(w)
+                }
+            }
+            ls = tmp
             var children = ls.filter(x => x.length).map(x => ({ title: x, subtitle: x }));
             return children;
         }
